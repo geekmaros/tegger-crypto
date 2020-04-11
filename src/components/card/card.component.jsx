@@ -11,7 +11,7 @@ const  fetchCrypto = async () => {
         crossdomain: true,
         headers: {'Access-Control-Allow-Origin': '*'}
     };
-    await axios.get('http://api.coincap.io/v2/assets', requestOptions)
+    await axios.get('https://api.coincap.io/v2/assets', requestOptions)
         .then( res => {
             const data = res.data
             console.log(data)

@@ -1,7 +1,8 @@
 import {cryptoTypes} from "./crypto.types";
 
 const cryptoState = {
-    crypto : []
+    cryptoItems : [],
+    singleCryptoItem: []
 }
 
 const cryptoReducer = (state = cryptoState, action) => {
@@ -9,12 +10,12 @@ const cryptoReducer = (state = cryptoState, action) => {
         case cryptoTypes.GET_ALL_CRYPTO:
             return{
                 ...state,
-                crypto: action.payload
+                cryptoItems: action.payload
             };
         case cryptoTypes.GET_SINGLE_CRYPTO:
             return {
                 ...state,
-                crypto: action.payload
+                singleCryptoItem: action.payload
             }
         default:
             return state

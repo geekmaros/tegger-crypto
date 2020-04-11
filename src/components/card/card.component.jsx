@@ -1,9 +1,12 @@
 import React,{useState, useEffect} from "react";
+import {connect} from 'react-redux'
+import {getAllCrypto} from "../../redux/crypto/crypto.action";
 import CardList from "../card-list/card-list.component";
 import './card.styles.sass'
 import axios  from 'axios'
 
-const Cards = () => {
+
+const Cards = ({getCrypto, allCryptoItems}) => {
 const  fetchCrypto = async () => {
     const requestOptions = {
         method: 'GET',
@@ -11,10 +14,10 @@ const  fetchCrypto = async () => {
         crossdomain: true,
         headers: {'Access-Control-Allow-Origin': '*'}
     };
-    await axios.get('https://api.coincap.io/v2/assets', requestOptions)
+    await axios.get('https://api.coincap.io/v2/assets?limit=9', requestOptions)
         .then( res => {
-            const data = res.data
-            console.log(data)
+            const data = res.data.data
+            getCrypto(data)
         })
 
 
@@ -26,9 +29,17 @@ useEffect(() => {
 })
     return (
         <div className='card-container'>
-            <CardList/>
+            {
+                allCryptoItems.map( cryptoItem => <CardList key={cryptoItem.id} items={cryptoItem}/> )
+            }
+
         </div>
     )
 }
-
-export default Cards
+const mapStateToProps = ({crypto}) => ({
+   allCryptoItems: crypto.cryptoItems
+})
+const mapDispatchToProps = dispatch => ({
+    getCrypto: items => dispatch(getAllCrypto(items))
+})
+export default connect(mapStateToProps, mapDispatchToProps)(Cards)

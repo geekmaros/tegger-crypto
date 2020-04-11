@@ -14,16 +14,24 @@
   .card-front
     height: 100%
     width: 100%
-    background-image: url(https://99px.ru/sstorage/56/2013/12/image_563012130153328414049.jpg)
     background-position: 50% 50%
     background-size: cover
     position: absolute
     top: 0
     left: 0
-    background-color: #000000
+    background-color: $cardDarkBG
     backface-visibility: hidden
     transform: rotateX(0deg)
     transition: .5s
+
+    .crypto-name
+      +fonts('Roboto',14px,900,center,20px,1.6, $darkThemeText)
+    //fonts($fontfamily,$fontsize, $fontweight,$text-align, $lineheight, $letterspacing, $color)
+
+
+    img
+      width: 100px
+      height: 100px
 
   .card-back
     height: 100%

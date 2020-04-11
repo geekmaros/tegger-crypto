@@ -1,0 +1,44 @@
+@import "../../sass/global"
+.card
+  width: 250px
+  height: 300px
+  background: transparent
+  perspective: 1000px
+  transition: .5s
+
+  &:hover .card-front
+    transform: rotateY(-180deg)
+  &:hover .card-back
+    transform: rotateY(0deg)
+
+  .card-front
+    height: 100%
+    width: 100%
+    background-image: url(https://99px.ru/sstorage/56/2013/12/image_563012130153328414049.jpg)
+    background-position: 50% 50%
+    background-size: cover
+    position: absolute
+    top: 0
+    left: 0
+    background-color: #000000
+    backface-visibility: hidden
+    transform: rotateX(0deg)
+    transition: .5s
+
+  .card-back
+    height: 100%
+    width: 100%
+    position: absolute
+    color: red
+    top: 0
+    left: 0
+    background-color: $cardDarkBG
+    backface-visibility: hidden
+    transform: rotateY(180deg)
+    transition: .5s
+    text-align: center
+
+
+
+
+

@@ -37,7 +37,7 @@
     height: 100%
     width: 100%
     position: absolute
-    color: red
+    +fonts('Roboto',14px,900,center,20px,1.6, $darkThemeText)
     top: 0
     left: 0
     background-color: $cardDarkBG
@@ -45,6 +45,17 @@
     transform: rotateY(180deg)
     transition: .5s
     text-align: center
+
+    img
+      width: 100px
+      height: 100px
+
+    .red
+      +fonts('Roboto',14px,900,center,20px,1.6, red)
+
+    .green
+      +fonts('Roboto',14px,900,center,20px,1.6, #00ae00)
+
 
 
 

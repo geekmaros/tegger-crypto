@@ -7,6 +7,7 @@ import axios  from 'axios'
 
 
 const Cards = ({getCrypto, allCryptoItems}) => {
+    const [resources, setResources] = useState([])
 const  fetchCrypto = async () => {
     const requestOptions = {
         method: 'GET',
@@ -17,7 +18,9 @@ const  fetchCrypto = async () => {
     await axios.get('https://api.coincap.io/v2/assets?limit=9', requestOptions)
         .then( res => {
             const data = res.data.data
+
             getCrypto(data)
+            setResources(data)
         })
 
 
@@ -26,7 +29,7 @@ const  fetchCrypto = async () => {
 }
 useEffect(() => {
     fetchCrypto()
-})
+}, [resources])
     return (
         <div className='card-container'>
             {

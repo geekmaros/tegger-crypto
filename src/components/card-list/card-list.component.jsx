@@ -1,14 +1,19 @@
 import React from "react";
-
+import {withRouter} from 'react-router-dom'
 import "./card-list.styles.sass";
 import {formatPrice} from "../../utils/formatPrice.util";
 import {checkDrop} from "../../utils/checkDrop";
+import {connect} from 'react-redux'
+import {getSingleCrypto} from "../../redux/crypto/crypto.action";
 
-const CardList = ({items}) => {
+const CardList = ({items, history, match, dispatch,getCrypto}) => {
    const {id,name, changePercent24Hr, priceUsd,symbol} = items
     const imageUrl = `https://static.coincap.io/assets/icons/${symbol.toLowerCase()}@2x.png`
   return (
-    <div className="card">
+    <div className="card" onClick={() => {
+        history.push(`assets/${id}`)
+        getCrypto(items)
+    }}>
       <div className="card-front flex flex-column justify-content-center align-items-center  "
            // style={{backgroundImage: `url(${imageUrl})`}}
       >
@@ -28,5 +33,7 @@ const CardList = ({items}) => {
     </div>
   );
 };
-
-export default CardList;
+const mapDispatchToProps = dispatch => ({
+    getCrypto: items => dispatch(getSingleCrypto(items))
+})
+export default connect(null, mapDispatchToProps)(withRouter(CardList));

@@ -15,7 +15,9 @@ const cryptoReducer = (state = cryptoState, action) => {
         case cryptoTypes.GET_SINGLE_CRYPTO:
             return {
                 ...state,
-                singleCryptoItem: action.payload
+                singleCryptoItem:state.cryptoItems.filter(crypto => {
+                    return crypto.id === action.payload.id
+                })
             }
         default:
             return state
